@@ -21,13 +21,13 @@ tags:
 
 ## 计划
 
-刷Leetcode简单题5题，在Leetcode心得文中写下心得  （）
+刷Leetcode简单题5题，在Leetcode心得文中写下心得  （×）
 
-看招聘前端要求，保存好图片 （）
+看招聘前端要求，保存好图片 （√）
 
-看w3school：Html表单---Html媒体 （）
+看w3school：Html表单/Html5 （√）
 
-在VScode上写一个简单的html网页，要看得过去  （）
+在VScode上写一个简单的html网页，要看得过去  （×）
 
 ...
 
