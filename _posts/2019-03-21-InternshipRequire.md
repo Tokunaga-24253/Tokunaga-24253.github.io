@@ -4,7 +4,7 @@ title:      前端实习岗位招聘要求梳理
 subtitle:    "\"(目标：实习)\""
 date:       2019-03-21
 author:     24253
-header-img: img/Learning.jpg
+header-img: img/Work.jpg
 catalog: true
 tags:
     - 2019
