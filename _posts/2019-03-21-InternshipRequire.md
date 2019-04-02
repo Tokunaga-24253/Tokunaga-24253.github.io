@@ -95,7 +95,17 @@ tags:
 参与过开源项目；有个人博客或主页；
 
 ---
+
+[字节跳动前端开发实习生](https://www.lagou.com/jobs/5353420.html)
+
+岗位需求：
+
+掌握WEB前端开发技术: JavaScript(含ES6)、HTML、CSS、DOM、协议、安全等；
+
+---
+
 未完待续
+
 ---
 
 ## 后记
