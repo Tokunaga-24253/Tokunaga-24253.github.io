@@ -31,37 +31,17 @@ tags:
 
 用 `<script>` 标签引入，`Vue` 会被注册为一个全局变量。（CDN是什么，请学习[CDN](https://www.baidu.com/s?ie=UTF-8&wd=CDN%20%E6%9C%8D%E5%8A%A1)）
 
-
-对于制作原型或学习，你可以这样使用最新版本：
+你可以这样使用：
 
 ```<script src="https://cdn.jsdelivr.net/npm/vue"></script>```
 
-对于生产环境，我们推荐链接到一个明确的版本号和构建文件，以避免新版本造成的不可预期的破坏：
-
-```<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>```
-
-如果你使用原生 ES Modules，这里也有一个兼容 ES Module 的构建文件：
-
-```
-<script type="module">
-  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.esm.browser.js'
-</script>
-```
-
-你可以在 [这里](dn.jsdelivr.net/npm/vue)浏览 NPM 包的源代码。
-
 Vue 也可以在 **unpkg** 和 **cdnjs** 上获取 (cdnjs的版本更新可能略滞后)。
 
-请确认了解**不同构建版本**并在你发布的站点中使用生产环境版本，把 `vue.js` 换成 `vue.min.js`。这是一个更小的构建，可以带来比开发环境下更快的速度体验。
-
 ### 2. 使用npm下载vue
-
-在用 Vue 构建大型应用时推荐使用 NPM 安装。NPM 能很好地和诸如 **webpack** 或 **Browserify** 模块打包器配合使用。同时 Vue 也提供配套工具来开发单文件组件。
 
 需要先下载NodejS，可以去[NodeJS官网](https://nodejs.org/zh-cn/)下载。
 
 安装时应该是一路点击下一步就行，然后你的电脑应该就可以使用npm了。
-
 
 ```
 # 最新稳定版
