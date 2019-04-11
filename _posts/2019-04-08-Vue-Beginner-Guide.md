@@ -2,7 +2,7 @@
 layout:     post
 title:      Vue入门心得
 subtitle:    "\"Here I come,Vue!\""
-date:       2019-04-08
+date:       2019-04-11
 author:     24253
 header-img: img/Vue.jpg
 catalog: true
@@ -19,15 +19,67 @@ tags:
 
 不仅因为*Vue*学习曲线不高，比较适合我，还有这是为了找实习而学的，以后方向究竟是什么还不好说。
 
-打算学习Vue后，决定使用*VScode*进行开发。于是Google：VScode Vue。看了很多教程，发现讲的都有点难懂，于是我在这里进行一个梳理，希望能给后来者一点帮助。
+打算学习Vue后，决定使用*VScode*进行开发。于是Google：VScode Vue。看了很多教程，发现讲的都有点难懂，还好后来在**YouTube**上找到了一个很好的教程，于是我在这里进行一个梳理，希望能给后来者一点帮助。
+
+------
 
 ## 正文
 
+新学者下载使用vue有三个主要方式（主要介绍第三种）：
+
+### 1. 使用CDN
+
+用 `<script>` 标签引入，`Vue` 会被注册为一个全局变量。（CDN是什么，请学习[CDN](https://www.baidu.com/s?ie=UTF-8&wd=CDN%20%E6%9C%8D%E5%8A%A1)）
 
 
-## 后记
+对于制作原型或学习，你可以这样使用最新版本：
+
+```<script src="https://cdn.jsdelivr.net/npm/vue"></script>```
+
+对于生产环境，我们推荐链接到一个明确的版本号和构建文件，以避免新版本造成的不可预期的破坏：
+
+```<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>```
+
+如果你使用原生 ES Modules，这里也有一个兼容 ES Module 的构建文件：
+
+```
+<script type="module">
+  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.esm.browser.js'
+</script>
+```
+
+你可以在 [这里](dn.jsdelivr.net/npm/vue)浏览 NPM 包的源代码。
+
+Vue 也可以在 **unpkg** 和 **cdnjs** 上获取 (cdnjs的版本更新可能略滞后)。
+
+请确认了解**不同构建版本**并在你发布的站点中使用生产环境版本，把 `vue.js` 换成 `vue.min.js`。这是一个更小的构建，可以带来比开发环境下更快的速度体验。
+
+### 2. 使用npm下载vue
+
+在用 Vue 构建大型应用时推荐使用 NPM 安装。NPM 能很好地和诸如 **webpack** 或 **Browserify** 模块打包器配合使用。同时 Vue 也提供配套工具来开发单文件组件。
+
+需要先下载NodejS，可以去[NodeJS官网](https://nodejs.org/zh-cn/)下载。
+
+安装时应该是一路点击下一步就行，然后你的电脑应该就可以使用npm了。
 
 
+```
+# 最新稳定版
+$ npm install vue
+```
 
-—— 24253 记于 2019-4-8
+### 3. 使用Vue CLI
 
+Vue CLI是一种快速，简单，有效的开启Vue项目的方式。（[什么是Cli](https://cn.vuejs.org/v2/guide/installation.html#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7-CLI)）
+
+我们这边使用npm下载Vue CLI 3.0版本。
+
+```npm install -g @vue/cli```
+
+然后用`vue create HelloVue`创建项目，HelloVue是我取的项目名称，你可以替换成你想要的。
+
+---
+
+如果你还想学接下来的知识，可以去Vue官网[Vue官网](https://cn.vuejs.org/)学习，也可以在网上找更多的视频资料学习，这里我推荐一个视频[Learn Vue 2 in 65 Minutes](https://www.youtube.com/watch?v=78tNYZUS-ps)。
+
+希望能给你们提供一点帮助~
