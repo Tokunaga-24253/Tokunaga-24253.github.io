@@ -1,8 +1,4 @@
----
-layout:     post
-title:      网站构思（前端工作关键词可视化）
-subtitle:    "\"The first Website I gonna build\""
-date:       2019-04-14
+-
 author:     24253
 header-img: img/FirstWebsite.jpg
 catalog: true
@@ -43,6 +39,11 @@ tags:
 
 3：Vue学习还不够，还不能自由在其中增添代码。
 
+更新：
+
+1.D3学习比较难，改用更简单的chart.js可视化库。
+
+2.Vue现在还不会，短时间内也不打算学习，所以先用简单的三板斧文件搭建网站。
 
 ## 后记
 
