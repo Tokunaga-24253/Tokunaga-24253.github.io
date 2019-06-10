@@ -7,7 +7,7 @@ description: "Rock n roll is a risk, you risk being ridiculed."
 keyword: "24253, Sparks Blog, 24253的博客"
 url: "https://tokunaga.fun/"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/Tokunaga-24253/Tokunaga-24253.github.io.git" # you code repository
+github_repo: "https://github.com/Tokunaga-X/Tokunaga-X.github.io.git" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
