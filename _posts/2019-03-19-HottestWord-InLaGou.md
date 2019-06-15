@@ -1,6 +1,10 @@
--
+---
+layout:     post
+title:      Hot-Word-Site-Plan
+subtitle:    "\"First site come from my idea.\""
+date:       2019-04-14
 author:     24253
-header-img: img/FirstWebsite.jpg
+header-img: img/hot-word.png
 catalog: true
 tags:
     - 网站构思
@@ -39,7 +43,7 @@ tags:
 
 3：Vue学习还不够，还不能自由在其中增添代码。
 
-更新：
+更新(19-5-10)：
 
 1.D3学习比较难，改用更简单的chart.js可视化库。
 
@@ -47,9 +51,15 @@ tags:
 
 3.数据最好能用nodejs写爬虫爬取下来。
 
+更新(19-6-10)：
+
+1.已用React初步重构网站。
+
 ## 后记
 
+#### 网站现状:
 
+![view](../img/hot-word.png)
 
 —— 24253 记于 2019-4-14
 
