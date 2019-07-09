@@ -19,16 +19,36 @@ tags:
 
 ## 正文
 
-()自我介绍，怎么学前端的
+(√)自我介绍，怎么学前端的  
+答：你好，我叫徐宇超，现在在浙江工商大学读大三/四，在校专业是信息安全。大三上选择了前端作为我的职业方向，现在学习前端接近半年/一年了，想找一份相关的工作。
+
+()CSS 常见两列布局、三列布局  
+答：  
+两列布局：  
+三列布局：
+
+()CSS 水平垂直居中  
+答：  
+1. 利用flex(我经常用，flexbox是好东西)  
+将父元素设置为display:flex，并且设置align-items:center;justify-content:center;
+
+2. margin负值法  
+父元素设置position: relative  
+子元素设置width和height和position: absolute  
+(子元素最好用div，其他好像呈现出来不太行)
+
+3. table-cell（未脱离文档流的）  
+设置父元素的display:table-cell,并且vertical-align:middle，这样子元素可以实现垂直居中。  
+(子元素不能用div，还要查询一下相关知识)
+
+4. 。。。。
+
+()闭包，JS 没有闭包的话会怎么样  
 答：
 
-()CSS 常见两列布局、三列布局
-
-()CSS 水平垂直居中
-
-()闭包，JS 没有闭包的话会怎么样
-
 ()typeof 和 instanceof
+
+答:
 
 ()js 的原型链，继承
 
