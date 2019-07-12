@@ -15,7 +15,7 @@ tags:
 
 ## 前言
 
-现在根据[这篇面经](https://www.nowcoder.com/discuss/197801)为目录进行回答，后续会拆分成HTML/CSS/JS/REACT/网络/...等知识领域。
+现在根据[腾讯前端暑期实习面经](https://www.nowcoder.com/discuss/197801)为目录进行回答，后续会拆分成HTML/CSS/JS/REACT/网络/...等知识领域。
 
 ## 正文
 
@@ -52,18 +52,25 @@ Div 设置: display:inline-block;vertical-align:middle;
 没有闭包的话
 
 ()typeof 和 instanceof  
-答:
+答：两者都是用来判断数据类型的。  
+typeof判断基础类型没问题，引用类型如Array、Number、String时会输出object，无法准确判断。  
+instanceof可以成功判断出各种引用类型，但是无法判断基础类型，可以判断基础类型的引用对象。  
+Object.prototype.toString.call()可以成功判断出基础类型和引用类型。（number和Number？）
 
 ()js 的原型链，继承  
-答:
+答：
 
 (√)js 的 bind、apply、call 有什么区别  
 答：  
 通过apply和call改变函数的this指向，他们两个函数的第一个参数都是一样的表示要改变指向的那个对象，第二个参数，apply是数组，而call则是arg1,arg2...这种形式。  
 通过bind改变this作用域会返回一个新的函数，这个函数不会马上执行。
 
-()var、let、const的区别  
-答：
+(√)var、let、const的区别  
+答：  
+var声明，其作用域是函数体的全部,会导致变量提升、重复声明等问题。  
+let和const声明的变量有作用域，存在暂时性死区。  
+let可以看成是var的更严格。  
+const声明的变量值不能改变，一般用来声明常量。
 
 (√)new 操作符原理（手动实现 new 给出思路）  
 答:
@@ -85,7 +92,33 @@ Div 设置: display:inline-block;vertical-align:middle;
 
 ()vue 的生命周期（我说我 React 比较熟）
 
-()react 的生命周期（React16）
+(√)react 的生命周期（React16）  
+答：  
+每个组件都包含“生命周期方法”，你可以重写这些方法，以便于在运行过程中特定的阶段执行这些方法。你可以使用此生命周期图谱作为速查表。在下述列表中，常用的生命周期方法会被**加粗**。其余生命周期函数的使用则相对罕见。
+
+挂载  
+当组件实例被创建并插入 DOM 中时，其生命周期调用顺序如下：  
+**constructor()**  
+static getDerivedStateFromProps()  
+**render()**  
+**componentDidMount()**
+
+更新  
+当组件的 props 或 state 发生变化时会触发更新。组件更新的生命周期调用顺序如下：  
+static getDerivedStateFromProps()  
+shouldComponentUpdate()  
+**render()**  
+getSnapshotBeforeUpdate()  
+**componentDidUpdate()**
+
+卸载  
+当组件从 DOM 中移除时会调用如下方法：  
+**componentWillUnmount()**
+
+错误处理  
+当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用如下方法：  
+static getDerivedStateFromError()  
+componentDidCatch()
 
 ()react 性能优化
 
@@ -93,7 +126,11 @@ Div 设置: display:inline-block;vertical-align:middle;
 
 ()react 的 Fiber 架构
 
-()状态码 304（强缓存和协商缓存）
+(√)状态码 304（强缓存和协商缓存）  
+答：状态码304表示如果客户端发送了一个带条件的 GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个状态码。即客户端和服务器端只需要传输很少的数据量来做文件的校验，如果文件没有修改过，则不需要返回全量的数据。
+
+缓存分为两种：强缓存和协商缓存，根据响应的header内容来决定。  
+具体看[这个](https://segmentfault.com/a/1190000008956069)
 
 ()加了面试官qq，视频手写原生 DOM 拖拽和大数相加（第二天）
 
@@ -116,18 +153,32 @@ Div 设置: display:inline-block;vertical-align:middle;
 节流是在防抖的基础上规定如果一个响应事件没有在一定时间段内触发过，那么就触发一次这个响应事件。
 这样可以实现图片的懒加载等功能。
 
-()实现无缝滑屏，你觉得怎么实现  
-requestAnimationFrame?
-
 ()dns 查询原理
 
-()tpc 握手和挥手
+(√)tcp 握手和挥手  
+答：C发起请求连接S确认，也发起连接C确认我们再看看每次握手的作用：第一次握手：S只可以确认 自己可以接受C发送的报文段第二次握手：C可以确认 S收到了自己发送的报文段，并且可以确认 自己可以接受S发送的报文段第三次握手：S可以确认 C收到了自己发送的报文段
 
-()tcp 和 udp区别，udp 使用场景
+(√)tcp 和 udp区别，udp 使用场景  
+答:  
+（1）TCP是面向连接的可靠性传输，UDP则是无连接、不保证可靠交付。  
+（2）TCP是面向字节流，UDP面向报文。  
+（3）TCP只能是1对1的，UDP支持1对1,1对多。  
+（4）TCP的首部较大为20字节，而UDP只有8字节。
 
-()https 和 http区别
+udp一般用于即时通信（对速度要求高与数据准确性和丢包要求）、在线视频、网络电话。
 
-()http2.0 相比 1.0 好在哪
+(√)https 和 http区别
+答：  
+http是超文本传输协议，用于从服务器传输超文本到本地浏览器的传输协议。  
+https是http的安全版，在http下多加了ssl层，对数据进行加密处理，使http不再明文传输。
+
+()http2.0 相比 1.0 好在哪  
+答：http2.0是基于1999年发布的http1.0之后的首次更新。  
+提升访问速度（可以对于，请求资源所需时间更少，访问速度更快，相比http1.0）  
+允许多路复用：多路复用允许同时通过单一的HTTP/2连接发送多重请求-响应信息。改善了：在http1.1中，浏览器客户端在同一时间，针对同一域名下的请求有一定数量限制（连接数量），超过限制会被阻塞。  
+二进制分帧：HTTP2.0会将所有的传输信息分割为更小的信息或者帧，并对他们进行二进制编码  
+首部压缩  
+服务器端推送
 
 ()抓包会吗，抓包原理，fiddler用过吗
 
@@ -222,7 +273,15 @@ http1.1 / http2.0 / https
 图片懒加载原理
 跨域
 前端常见攻击方式
-状态码
+
+()状态码  
+答：  
+200:访问成功（表示一切正常，返回的是正常请求结果）  
+302：临时重定向（指出被请求的文档已被临时移动到别处，此文档的新的URL在Location响应头中给出）  
+304：未修改（表示客户机缓存的版本是最新的，客户机应该继续使用它。）  
+404：访问的文件不存在（服务器上不存在客户机所请求的资源）  
+500：内部服务器错误（服务器端的CGI、ASP、JSP等程序发生错误）
+
 强缓存和协商缓存
 Node 的优势
 Express 和 Koa 区别
