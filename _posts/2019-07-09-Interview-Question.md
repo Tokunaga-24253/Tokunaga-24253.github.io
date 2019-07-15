@@ -33,25 +33,23 @@ tags:
 
 (√)CSS 水平垂直居中  
 答：  
-1. 利用flex(我经常用，flexbox是好东西)  
+1. margin负值法(原始)  
+父盒子设置:position:relative(absolute也行？)  
+Div 设置: position:absolute; top: 50%;left: 50%; transform: translate(-50%，-50%);
+
+2. table-cell（待完善）  
+父盒子设置:display:table-cell; text-align:center;vertical-align:middle;  
+Div 设置: display:inline-block;vertical-align:middle;
+
+3. 利用flex(flexbox)  
 将父元素设置为display:flex，并且设置align-items:center;justify-content:center;
 
-2. margin负值法  
-父盒子设置:display:relative  
-Div 设置: transform: translate(-50%，-50%);position: absolute;top: 50%;left: 50%;  
-(子元素最好用div，其他好像呈现出来不太行)
-
-3. table-cell（未脱离文档流的）  
-父盒子设置:display:table-cell; text-align:center;vertical-align:middle;  
-Div 设置: display:inline-block;vertical-align:middle;  
-
-4. 。。。。
 
 ()闭包，JS 没有闭包的话会怎么样  
 答：一句话可以概括：闭包就是能够读取其他函数内部变量的函数，或者子函数在外调用，子函数所在的父函数的作用域不会被释放。（待概括）  
 没有闭包的话
 
-()typeof 和 instanceof  
+(√)typeof 和 instanceof  
 答：两者都是用来判断数据类型的。  
 typeof判断基础类型没问题，引用类型如Array、Number、String时会输出object，无法准确判断。  
 instanceof可以成功判断出各种引用类型，但是无法判断基础类型，可以判断基础类型的引用对象。  
@@ -84,13 +82,13 @@ const声明的变量值不能改变，一般用来声明常量。
 箭头函数中的this指向的是包裹箭头函数的环境的this，也就是说，在箭头函数中调用 this 时，仅仅是简单的沿着作用域链向上寻找，找到最近的一个 this 拿来使用。  
 箭头函数能被new吗?
 
-()promise 知道吗，手写一个 promise 怎么写（说思路）
+()promise 知道吗，手写一个 promise 怎么写（说思路）  
+答：
 
 ()promise.all 应用场景
 
-()promise 和 async/await 的区别
-
-()vue 的生命周期（我说我 React 比较熟）
+(√)promise 和 async/await 的区别  
+答：看[这里](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/33)。
 
 (√)react 的生命周期（React16）  
 答：  
@@ -172,19 +170,26 @@ udp一般用于即时通信（对速度要求高与数据准确性和丢包要�
 http是超文本传输协议，用于从服务器传输超文本到本地浏览器的传输协议。  
 https是http的安全版，在http下多加了ssl层，对数据进行加密处理，使http不再明文传输。
 
-()http2.0 相比 1.0 好在哪  
-答：http2.0是基于1999年发布的http1.0之后的首次更新。  
-提升访问速度（可以对于，请求资源所需时间更少，访问速度更快，相比http1.0）  
-允许多路复用：多路复用允许同时通过单一的HTTP/2连接发送多重请求-响应信息。改善了：在http1.1中，浏览器客户端在同一时间，针对同一域名下的请求有一定数量限制（连接数量），超过限制会被阻塞。  
-二进制分帧：HTTP2.0会将所有的传输信息分割为更小的信息或者帧，并对他们进行二进制编码  
-首部压缩  
-服务器端推送
+(√)http2.0 相比 1.0 好在哪  
+答： 
+提升访问速度  
+允许**多路复用**：多路复用允许同时通过单一的HTTP/2连接发送多重请求-响应信息。改善了：在http1.1中，浏览器客户端在同一时间，针对同一域名下的请求有一定数量限制（连接数量），超过限制会被阻塞。  
+规定了HTTP传输的所有内容都转为二进制进行传输 
+对消息头部进行压缩传输  
+服务器端能够更快地把资源推送到客户端
 
-()抓包会吗，抓包原理，fiddler用过吗
+()抓包会吗，抓包原理，fiddler用过吗  
+答：抓包上网络安全实验课的时候讲到过，老师让我们用wireshark来抓包分析http和tcp相关知识。
 
 ()跨域
 
-()csrf、xss，如何预防
+(√)csrf、xss，如何预防  
+答：  
+xss(cross site script)也叫跨站脚本攻击，是通过漏洞往网站写入脚本来实现攻击。攻击方式有反射型(url或其他输入点注入)和存储型(存储到数据库后读取时注入)。理论上所有用户输入点都有可能存在xss漏洞。  
+可以通过过滤用户输入、对cookie进行安全操作(设置成httponly，这样js就不能获取到该网站的cookie了)等操作进行防范。
+
+csrf(cross site request forgery)也叫跨站请求伪造，就是让用户在不知情的情况，冒用其身份发起了一个请求。比如诱导用户点击一个攻击网址，攻击网址向被攻击网址发送请求，如果浏览器中存在此网站cookie，那么被攻击网址就会识别是用户操作，从而被攻击。  
+可以通过验证 HTTP Referer 字段(它记录了该 HTTP 请求的来源地址)、设置验证码、在请求地址中添加token、在http头中添加token等方法进行防范。
 
 ()项目的 webpack 配置
 
@@ -209,26 +214,57 @@ https是http的安全版，在http下多加了ssl层，对数据进行加密处�
 ()和后端一般是怎么沟通和联调的
 
 ()网络安全
-
-()看你用过nginx，聊聊nginx吧
-
-()docker也用过？（不是很熟还是别往简历上写给自己挖坑啦..）
+答：
 
 ()后端技术栈了解哪些
+答：node？
 
 ()有什么想问的吗？
 
-自我介绍，在校情况
-圣杯布局、双飞翼布局
-CSS 媒体查询
-CSS 动画、CSS 对网页性能优化
-浏览器渲染原理、回流与重绘
+()自我介绍，在校情况
+
+(√)圣杯布局、双飞翼布局  
+答：两个都是实现一个三列布局，中间自适应，两边固定宽。  
+中间部分width：100% float：left 左/右部分width：200px；float：laft；margin-left/right：100%；（拉到上一行）  
+接下来圣杯布局用父元素margin-left/right：200px；（或padding）左/右部分position: relative;left/right: -200px;实现  
+双飞翼用中间加div innermargin-left: 200px;margin-right: 300px;将 inner 挤到中间实现  
+中间自适应，两边固定宽用flex和grid更容易实现。
+
+(√)CSS 媒体查询
+答：  
+写法:  
+@media 设备类型 and （设备特征）{  
+     div{width：200px；height：200px}  
+}  
+例:  
+@media screen and (max-width:720px) and (min-width:320px)  
+{ body{ background-color:red; } }
+
+()CSS 动画、CSS 对网页性能优化
+
+(√)浏览器渲染原理、回流与重绘
+答：
+1. 处理 HTML 标记并构建 DOM 树。
+2. 处理 CSS 标记并构建 CSSOM 树。
+3. 将 DOM 与 CSSOM 合并成一个渲染树。
+4. 根据渲染树来布局，以计算每个节点的几何信息，将各个节点绘制到屏幕上。
+
+回流：当渲染树的部分(或全部)因为元素的规模尺寸、布局，隐藏等改变而需要重新构建，这就称为回流(reflow)。在回流的时候，浏览器会使渲染树中受到影响的部分失效，并重新构造这部分渲染树，完成回流后，浏览器会重新绘制受影响的部分到屏幕中，该过程成为重绘。
+
+重绘：当render tree中的一些元素需要更新属性，而这些属性只是影响元素的外观，风格，而不会影响布局的，比如background-color。则就叫称为重绘。
+
+回流必将引起重绘，而重绘不一定会引起回流。
+
 JS 单线程、EventLoop、宏队列、微队列
-Go 语言知道吗？ 为什么 Go 效率比较高？ （只是了解，效率高大概是因为多线程？）
+
 Ajax 和 Fetch
+
 怎么同时让多个异步请求并行？
+
 跨域问题
+
 xss 和 csrf （聊到跨域基本都会聊跨域安全问题，所以这两个知识点可以一起准备）
+
 session 和 cookie
 服务器怎么知道 session 过期？
 怎么设置 cookie 过期时间
@@ -236,7 +272,10 @@ sessionStorage 和 localStorage
 强缓存和协商缓存
 ES6 数组新增方法
 ES6 箭头函数和普通函数区别
-promise、generator、async/await
+
+()promise、generator、async/await  
+答：
+
 react 父子组件传参
 PureComponent 知道吗
 React 性能优化
