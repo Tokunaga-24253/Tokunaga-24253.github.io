@@ -63,7 +63,8 @@ Object.prototype.toString.call()可以成功判断出基础类型和引用类型
 (√)js 的 bind、apply、call 有什么区别  
 答：  
 通过apply和call改变函数的this指向，他们两个函数的第一个参数都是一样的表示要改变指向的那个对象，第二个参数，apply是数组，而call则是arg1,arg2...这种形式。  
-通过bind改变this作用域会返回一个新的函数，这个函数不会马上执行。
+通过bind改变this作用域会返回一个新的对象，这个对象不会马上执行。
+详细看[这里](https://www.youtube.com/watch?v=c0mLRpw-9rI)
 
 (√)var、let、const的区别  
 答：  
