@@ -4,7 +4,7 @@ title:      Hot-Word-Site-Plan
 subtitle:    "\"First site come from my idea.\""
 date:       2019-04-14
 author:     24253
-header-img: img/hot-word.png
+header-img: img/website.jpg
 catalog: true
 tags:
     - 网站构思
