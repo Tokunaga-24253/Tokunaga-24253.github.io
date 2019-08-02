@@ -4,7 +4,7 @@ title:      Beautiful-CSS
 subtitle:    "\"值得收藏的CSS特效\""
 date:       2019-07-17
 author:     24253
-header-img: img/HelloBlog.jpg
+header-img: img/learning2.jpg
 catalog: true
 tags:
     - CSS

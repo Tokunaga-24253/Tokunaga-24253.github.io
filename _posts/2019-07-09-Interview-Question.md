@@ -4,7 +4,7 @@ title:      前端面试常见问题自我梳理
 subtitle:    "\"写下我的回答，以便翻阅\""
 date:       2019-07-09
 author:     24253
-header-img: img/HelloBlog.jpg
+header-img: img/Work.jpg
 catalog: true
 tags:
     - 2019

@@ -4,7 +4,7 @@ title:      Sass Crash-Course(入门)
 subtitle:    "\"Let's learn sass!\""
 date:       2019-06-15
 author:     24253
-header-img: img/Learning.jpg
+header-img: img/learning.jpg
 catalog: true
 tags:
     - Css

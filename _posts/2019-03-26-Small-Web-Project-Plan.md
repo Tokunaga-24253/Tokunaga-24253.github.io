@@ -4,7 +4,7 @@ title:      网站构思（总）
 subtitle:    "\"Boom!\""
 date:       2019-03-26
 author:     24253
-header-img: img/MyWebPage.png
+header-img: img/terracehouse.png
 catalog: true
 tags:
     - 大学学习
