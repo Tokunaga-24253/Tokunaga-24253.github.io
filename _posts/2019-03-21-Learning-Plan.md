@@ -4,7 +4,7 @@ title:      学习计划
 subtitle:    "\"(每天学习情况总结)\""
 date:       2019-03-21
 author:     24253
-header-img: img/learning.jpg
+header-img: img/Learning.jpg
 catalog: true
 tags:
     - 大学学习
