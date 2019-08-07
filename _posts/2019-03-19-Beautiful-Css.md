@@ -43,6 +43,56 @@ PS:关于[linear-gradient](https://www.runoob.com/cssref/func-linear-gradient.ht
 
 ---
 
+利用：before/after做出来的hover效果
+
+css代码:
+```
+xxx {
+    color: inherit;
+    letter-spacing: 1px;
+    position: relative;
+    margin: 0 3rem;
+    padding: 5px 0;
+}
+xxx:last-child {
+    margin-right: 40px;
+}
+xxx::before,
+xxx::after
+{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: crimson;
+    left: 0;
+    position: absolute;
+    //scale动画
+    transform: scaleX(0);
+    //设置动画时间
+    transition: all .5s;
+}
+xxx::before
+{
+    //上半部分
+    top: 0;
+    //
+    transform-origin: left;
+}
+xxx::after
+{
+    //下半部分
+    bottom: 0;
+    transform-origin: right;
+}
+xxx:hover::before,
+xxx:hover::after
+{
+    transform: scaleX(1);
+}
+```
+
+---
+
 
 
 ## 后记
