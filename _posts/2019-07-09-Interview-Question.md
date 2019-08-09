@@ -13,14 +13,180 @@ tags:
 
 > “🙉🙉🙉 ”
 
-## 前言
+## 新：
 
-现在根据[腾讯前端暑期实习面经](https://www.nowcoder.com/discuss/197801)为目录进行回答，后续会拆分成HTML/CSS/JS/REACT/网络/...等知识领域。
+根据[2020秋招牛客网阿里前端面经](https://www.nowcoder.com/discuss/tag/134?order=3&type=2&expTag=3&query=)整理
 
-## 正文
+## HTML：
+
+#### 重绘重排的原理，如果DOM下100个节点更新那会重排100次吗？  
+
+
+## CSS：
+
+#### 垂直水平居中：
+
+1. margin负值法(原始)  
+父盒子设置:position:relative(absolute也行？)  
+Div 设置: position:absolute; top: 50%;left: 50%; transform: translate(-50%，-50%);
+
+2. table-cell（待完善）  
+父盒子设置:display:table-cell; text-align:center;vertical-align:middle;  
+Div 设置: display:inline-block;vertical-align:middle;
+
+3. 利用flex/grid布局
+将父元素设置为display:flex/grid，并且设置align-items:center;justify-content:center;
+
+
+
+
+
+## JS：
+
+#### let和const的区别：  
+答：const声明必须直接赋值。
+
+---
+
+#### const声明的对象的属性值可以修改吗？：  
+
+
+---
+
+### ES6
+
+#### 对es6有什么了解？ 
+
+
+---
+
+#### 说说ES6的一些新特性  
+答: 箭头函数、const&let、块级作用域、promise、await&async、symbol。
+
+---
+
+#### ES6数组新增方法  
+Array.map(根据callback函数，返回一个新数组)  
+Array.filter(根据callback，返回过滤后的数组)  
+Array.from(将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历的对象（包括 ES6 新增的数据结构 Set 和 Map）)  
+Array.of(用于将一组值，转换为数组，可用来新建数组)  
+Array.every(判断数组中所有元素是否符合条件，返回true/false)  
+Array.some(判断数组中是否有元素符合条件，返回true/false)  
+Array.find/findIndex(返回数组中符合条件的第一个元素，否则就返回undefined/这个方法是返回数组中符合条件的第一个元素的索引值，否则就返回-1)
+
+---
+
+#### ES6箭头函数和普通函数区别：  
+1. this指向问题(箭头函数没有this，它的this指向定义时父作用域的this，也不能用call、bind、apply)  
+2. 不可以被当作构造函数  
+3. 不可以使用arguments对象，该对象在函数体内不存在，如果要用就用rest参数替代。  
+4. 不可以使用yield命令，因此箭头函数不能用作 Generator 函数。
+
+---
+
+#### 对promise的理解，对async和await的理解：  
+promise 和 async/await 的区别看[这里](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/33)。  
+
+
+## React/Vue：
+
+#### Vue的双向数据绑定原理：  
+
+
+---
+
+#### jquery与vue/react的区别：  
+
+
+---
+
+
+## 前端工具：
+
+
+
+
+
+
+
+#### 介绍一下webpack及使用过的插件：  
+
+
+---
+
+
+
+
+## 网络：
+
+#### https使用的是ssl协议，如果服务端分发公钥，浏览器端使用私钥解密会话密钥会不会不安全？为什么？  
+
+---
+
+#### http2.0有了解吗？  
+
+
+---
+
+#### TCP三次握手，四次挥手？  
+
+
+---
+
+
+
+## 安全：
+
+
+
+
+
+
+
+## 性能优化：
+
+
+
+## 可视化
+
+#### canvas了解吗？  
+
+
+
+## Node/后端：
+
+#### 介绍一下express：
+
+
+---
+
+### npm的含义：  
+Node Package Managermeng?
+
+## 项目：
+
+
+
+## 其他问题：
+
+#### 自我介绍：  
+你好，我叫徐宇超，现在在浙江工商大学读大三/四，在校专业是信息安全。大三上选择了前端作为我的职业方向，主要通过自学来学习前端，学习了接近一年了，现在想找一份工作，（来XX面试是一种挑战）同时也检验一下我的知识水平和学习成果，如果能通过的话最好，但如果结果不太理想，那我觉得也能暴露出我的问题。
+
+---
+
+#### 有什么要问的：  
+
+
+---
+
+
+
+## 旧：
+
+根据[腾讯前端暑期实习面经](https://www.nowcoder.com/discuss/197801)为目录进行回答，后续会拆分成HTML/CSS/JS/REACT/网络/...等知识领域。
 
 (√)自我介绍  
-答：你好，我叫徐宇超，现在在浙江工商大学读大三/四，在校专业是信息安全。大三上选择了前端作为我的职业方向，主要通过自学来学习前端，学习了接近一年了，现在想找一份工作，（来XX面试是一种挑战）同时也检验一下我的知识水平和学习成果，如果能通过的话最好，但如果结果不太理想，那我觉得也能暴露出我的问题，
+答：你好，我叫徐宇超，现在在浙江工商大学读大三/四，在校专业是信息安全。大三上选择了前端作为我的职业方向，主要通过自学来学习前端，学习了接近一年了，现在想找一份工作，（来XX面试是一种挑战）同时也检验一下我的知识水平和学习成果，如果能通过的话最好，但如果结果不太理想，那我觉得也能暴露出我的问题。
 
 (√)怎么学前端的/说说你学前端的历程吧  
 答：学习前端刚开始是在w3school这个网站上学html、css和js的基础知识。  
@@ -90,9 +256,6 @@ const声明的变量值不能改变，一般用来声明常量。
 
 ()promise.all 应用场景
 
-(√)promise 和 async/await 的区别  
-答：看[这里](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/33)。
-
 (√)react 的生命周期（React16）  
 答：  
 每个组件都包含“生命周期方法”，你可以重写这些方法，以便于在运行过程中特定的阶段执行这些方法。你可以使用此生命周期图谱作为速查表。在下述列表中，常用的生命周期方法会被**加粗**。其余生命周期函数的使用则相对罕见。
@@ -136,9 +299,6 @@ componentDidCatch()
 ()加了面试官qq，视频手写原生 DOM 拖拽和大数相加（第二天）
 
 ()说说项目遇到的坑
-
-(√)看你项目 ES6 用的比较多，说说 ES6 的一些新特性  
-答: 箭头函数、const&let、块级作用域、promise、await&async、symbol。
 
 ()有没有考虑对图片处理的优化手段，说说常用的  
 答:懒加载和预加载、压缩
@@ -289,29 +449,6 @@ js又需要处理并发任务，所以需要事件循环。
 
 ()sessionStorage 和 localStorage  
 答：
-
-(√)ES6 数组新增方法  
-答：  
-Array.map(根据callback函数，返回一个新数组)
-
-Array.filter(根据callback，返回过滤后的数组)
-
-Array.from(将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历的对象（包括 ES6 新增的数据结构 Set 和 Map）)
-
-Array.of(用于将一组值，转换为数组，可用来新建数组)
-
-Array.every(判断数组中所有元素是否符合条件，返回true/false)
-
-Array.some(判断数组中是否有元素符合条件，返回true/false)
-
-Array.find/findIndex(返回数组中符合条件的第一个元素，否则就返回undefined/这个方法是返回数组中符合条件的第一个元素的索引值，否则就返回-1)
-
-(√)ES6 箭头函数和普通函数区别
-答：  
-1. this指向问题(箭头函数没有this，它的this指向定义时父作用域的this，也不能用call、bind、apply)
-2. 不可以被当作构造函数
-3. 不可以使用arguments对象，该对象在函数体内不存在，如果要用就用rest参数替代。
-4. 不可以使用yield命令，因此箭头函数不能用作 Generator 函数。
 
 ()promise、generator、async/await  
 
