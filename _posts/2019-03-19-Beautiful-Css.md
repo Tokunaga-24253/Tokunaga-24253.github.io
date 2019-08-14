@@ -143,6 +143,38 @@ PS: ~ 是兄弟选择器的符号，表示选定元素后所有的选定元素�
 
 ---
 
+background-image 增加颜色滤镜和阴影
+
+展示：![gif4](../img/cssAnimation4.png)
+
+html:
+
+```
+<div class="bg"></div>
+```
+
+css:
+
+```
+.bg {
+    background-image: ......;
+}
+.bg::after {
+    content:'';
+    position:absolute;
+    top/left: 0;
+    width/height: 100%;
+    // just for the background, not affect the others.
+    z-index: 1;
+    // 滤镜
+    background: rgba(0,0,0,.6);
+    // 阴影，前一段控制左和上，后一段控制右和下。
+    box-shadow: inset 100px 100px 100px #000000, inset -100px -100px 100px #000000;
+}
+```
+
+---
+
 ## 后记
 
 —— 24253 记于 2019-3-19
