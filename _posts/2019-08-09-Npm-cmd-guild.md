@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HelloBlog
+title: NPM常用命令
 subtitle: '"学习并记录npm指令"'
 date: 2019-03-19
 author: 24253
@@ -9,6 +9,7 @@ catalog: true
 tags:
   - 2019
   - 大学学习
+  - 前端
 ---
 
 > “🙉🙉🙉 ”
