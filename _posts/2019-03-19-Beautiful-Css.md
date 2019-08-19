@@ -23,7 +23,7 @@ tags:
 
 渐变背景颜色加转换：
 
-展示：![gif1](../img/cssAnimation1.gif)
+展示：![gif1](https://raw.githubusercontent.com/Tokunaga-X/Tokunaga-X.github.io/master/img/cssAnimation1.gif)
 
 css 代码：
 
@@ -47,7 +47,7 @@ PS:关于[linear-gradient](https://www.runoob.com/cssref/func-linear-gradient.ht
 
 利用：before/after 做出来的 hover 效果
 
-展示：![gif2](../img/cssAnimation2.gif)
+展示：![gif2](https://raw.githubusercontent.com/Tokunaga-X/Tokunaga-X.github.io/master/img/cssAnimation2.gif)
 
 css 代码:
 
@@ -102,7 +102,7 @@ xxx:hover::after
 
 hover 中间图片显示，图片周围区域模糊
 
-展示：![gif3](../img/cssAnimation3.gif)
+展示：![gif3](https://raw.githubusercontent.com/Tokunaga-X/Tokunaga-X.github.io/master/img/cssAnimation3.gif)
 
 html:
 
@@ -147,7 +147,7 @@ css 代码:
 
 background-image 增加颜色滤镜和阴影
 
-展示：![gif4](../img/cssAnimation4.png)
+展示：![gif4](https://raw.githubusercontent.com/Tokunaga-X/Tokunaga-X.github.io/master/img/cssAnimation4.png)
 
 html:
 
@@ -181,7 +181,7 @@ css:
 
 rate 评分组件
 
-展示：![gif5](../img/cssAnimation5.gif)
+展示：![gif5](https://raw.githubusercontent.com/Tokunaga-X/Tokunaga-X.github.io/master/img/cssAnimation5.gif)
 
 原理: 看[这里](https://juejin.im/post/5d57adf5f265da03e3697e1b)
 
