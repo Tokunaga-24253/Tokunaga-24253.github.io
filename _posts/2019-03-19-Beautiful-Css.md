@@ -96,6 +96,8 @@ xxx:hover::after
 }
 ```
 
+重点：利用 _::before_ 和 *::after*属性，不算高级，但是实用。
+
 ---
 
 hover 中间图片显示，图片周围区域模糊
@@ -139,7 +141,7 @@ css 代码:
 }
 ```
 
-PS: ~ 是兄弟选择器的符号，表示选定元素后所有的选定元素。同为兄弟选择器的+则是选定元素后第一个选定元素。background-attachment 是选择背景图片跟不跟随滑动而滑动。
+重点: 两张图片利用 position、z-index 重叠，_~_ 是兄弟选择器的符号，表示选定元素后所有的选定元素。同为兄弟选择器的 _+_ 则是选定元素后第一个选定元素。_background-attachment_ 是选择背景图片跟不跟随滑动而滑动。
 
 ---
 
@@ -171,6 +173,27 @@ css:
     // 阴影，前一段控制左和上，后一段控制右和下。
     box-shadow: inset 100px 100px 100px #000000, inset -100px -100px 100px #000000;
 }
+```
+
+重点：利用::after 中的 background：rgba 和 box—shadow 实现效果。
+
+---
+
+rate 评分组件
+
+展示：![gif5](../img/cssAnimation5.gif)
+
+原理: 看[这里](https://juejin.im/post/5d57adf5f265da03e3697e1b)
+
+核心代码：
+
+```
+元素反向排列：
+display: flex;
+flex-flow: row-reverse;
+
+兄弟元素操作：
+input:checked ~ input
 ```
 
 ---
