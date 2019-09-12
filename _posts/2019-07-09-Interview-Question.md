@@ -66,6 +66,10 @@ tags:
 
 ---
 
+#### flex
+
+---
+
 ####　清除浮动
 
 [zheli](https://blog.csdn.net/Aonlyao/article/details/81236088)
@@ -87,6 +91,18 @@ tags:
 #### 判断类型方法
 
 typeof instanceof Object.prototype.toString
+
+```
+typeof(test)
+```
+
+```
+test instanceof XXX
+```
+
+```
+Object.prototype.toString.call(test)
+```
 
 ---
 
@@ -158,7 +174,12 @@ ES6 新出的基本数据类型 表示独一无二的值。
 
 #### 新数据结构 Set、Map
 
+---
+
 #### 深/浅拷贝
+
+浅拷贝：一般用 Object.assign(obj)
+深拷贝：一般用 Json.stringify(e)
 
 ---
 
