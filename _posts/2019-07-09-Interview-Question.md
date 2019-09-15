@@ -178,8 +178,19 @@ ES6 新出的基本数据类型 表示独一无二的值。
 
 #### 深/浅拷贝
 
-浅拷贝：一般用 Object.assign(obj)
-深拷贝：一般用 Json.stringify(e)
+浅拷贝：一般用 Object.assign(obj)  
+深拷贝：  
+基础：JSON.parse(JSON.stringify())  
+进阶：function deepClone(target) {
+if(typeof target === 'object') {
+let newTarget = Array.isArray(target) ? [] : {};
+for(const key in target) {
+newTarget[key] = deepClone(target[key]);
+}
+} else {
+return target;
+}
+}
 
 ---
 
@@ -475,10 +486,6 @@ DNS 的工作原理及过程分下面几个步骤：
 
 ---
 
-#### tcp 为什么要连接，底层原理：
-
----
-
 ## 安全：
 
 #### 项目安全怎么做的，你有想法吗：
@@ -570,15 +577,9 @@ csrf:
 
 ## 可视化
 
-#### canvas 了解吗？
-
 ## Node/后端：
 
 #### 介绍一下 express：
-
----
-
-#### 进程和线程:
 
 ---
 
@@ -592,14 +593,6 @@ csrf:
 
 ---
 
-#### npm 的含义：
-
-Node Package Managermeng?
-
----
-
-#### node 中版本号前的^什么意思：
-
 ## 项目：
 
 #### 项目里面遇到的困难:
@@ -607,10 +600,6 @@ Node Package Managermeng?
 ---
 
 ## 其他问题：
-
-#### 为什么要用 html，为什么要用 css，为什么要用 js，不能用别的吗:
-
----
 
 #### 自我介绍：
 
@@ -627,7 +616,7 @@ Node Package Managermeng?
 
 #### 有什么要问的：
 
-我们的技术栈是什么？/对我的评价/
+公司技术栈是什么？/对我的评价/
 
 ---
 
