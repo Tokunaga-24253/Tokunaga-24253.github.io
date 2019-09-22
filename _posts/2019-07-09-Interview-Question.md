@@ -21,6 +21,9 @@ tags:
 
 #### 语义化（标签）
 
+为了 html 代码有更好的可读性，可以做到从代码上来展示页面的结构。良好的语义化代码可以直接从代码上就能看出来那一块到底是要表达什么内容。
+HTML5 新增的语义化标签：header、footer、nav、article、section、aside。
+
 #### 重绘重排的原理，如果 DOM 下 100 个节点更新那会重排 100 次吗？
 
 答：  
@@ -34,6 +37,15 @@ tags:
 现代浏览器大多都是通过队列机制来批量更新布局，浏览器会把修改操作放在队列中，至少一个浏览器刷新（即 16.6ms）才会清空队列(队列化修改并批量执行来优化重排过程)，但是有些属性会强制浏览器进行回流操作，比如 offsetTop/Left/Width/Height、scrollTop/Left/Width/Height、clientTop/Left/Width/Height。
 
 ---
+
+#### 事件代理
+
+为什么？  
+因为给每个子元素添加一个事件，就会不断地与 dom 节点进行交互，访问 dom 次数越多，引起浏览器重绘与重排的次数也就越多，为了优化性能，运用事件代理的话，只要给父元素添加一次事件就可以了。  
+原理:  
+一些 dom 事件（比如 click，mousedown，mouseup，keydown，keyup，keypress。）具有冒泡属性：就是事件会一层层向上传播，那么有了这个机制，我们如果给外层的节点加 onclick 事件，如果内层的节点触发了这个事件，那么就会触发我们定义的事件。
+
+##### 阻止冒泡
 
 ---
 
@@ -162,7 +174,7 @@ const 声明必须直接赋值。
 
 #### 说说 ES6 的一些新特性
 
-## 答: 箭头函数、const&let、块级作用域、promise、await&async、symbol、解构赋值、模板字符串、Set、Map
+## 答: 箭头函数、const&let、块级作用域、promise、class、await&async、symbol、解构赋值、模板字符串、Set、Map
 
 #### symbol，怎么理解:
 
