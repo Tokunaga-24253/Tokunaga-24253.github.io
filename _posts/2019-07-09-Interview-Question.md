@@ -72,13 +72,14 @@ addEventListener 时第三个参数来确定要不要冒泡。
 1. margin 负值法(原始)  
    父盒子设置:position:relative/absolute  
    Div 设置: position:absolute; top: 50%;left: 50%; transform: translate(-50%，-50%);
-   或 top/left/bottom/right:0; margin: auto;
 
-2. table-cell（待完善）  
+2. 已知宽高 div 设置：position:absolute;top/left/bottom/right:0; margin: auto;
+
+3. table-cell（待完善）  
    父盒子设置:display:table-cell; text-align:center;vertical-align:middle;  
    Div 设置: display:inline-block;vertical-align:middle;
 
-3. 利用 flex/grid 布局
+4. 利用 flex/grid 布局
    将父元素设置为 display:flex/grid，并且设置 align-items:center;justify-content:center;
 
 #### 怎么实现鼠标移动上去两秒后展开，移开两秒后慢慢回收的动画效果:
@@ -97,7 +98,11 @@ addEventListener 时第三个参数来确定要不要冒泡。
 
 #### css3 新增属性
 
-transition、animation、transform、选择器(:nth-child、:last-child 等)、box-shadow、border-image、border-radius、background-clip、background-origin、background-size、
+- transition、animation、transform
+- 选择器(:nth-child、:last-child 等)
+- box-shadow
+- border-image、border-radius
+- background-size(指定图片大小 px/%/cover/contain)、background-clip(指定图片定位区域，但是是从起始点开始变化)、background-origin(规定图片定位区域,但是 content-box/padding-box/border-box)、background-repeat(重复 repeat/no-repeat/inherit))
 
 ---
 
@@ -127,7 +132,7 @@ flex-shrink: 1;
 order: 1/2/3;
 justify-content: flex-start/flex-end/center;
 align-items: flex-start/flex-end/center;
-align-content: flex-start/flex-end/center;
+align-content: flex-start/flex-end/center; (只对多行有效)
 align-self: flex-start/flex-end/center;
 
 ```
@@ -185,6 +190,8 @@ js 需要处理并发任务，所以需要事件循环。
   所有的宏任务放在一个宏任务队列（即任务队列），**处理完一个**宏任务(从 sccript 开始)，将微任务队列（包含当时所有的微任务）压入任务队列（宏任务队列）并执行，之后再取下一个任务队列（宏任务）中的宏任务。
 
 - node 事件环：
+
+多一个 process.nextTick,是微任务，但是优先级比 promise 高。
 
 详细看[这里](https://juejin.im/post/5c910c9f6fb9a070e25a5f56)
 
@@ -266,8 +273,46 @@ const 声明必须直接赋值。
 ##### js 的 bind、apply、call 有什么区别
 
 通过 apply 和 call 改变函数的 this 指向，他们两个函数的第一个参数都是一样的表示要改变指向的那个对象，第二个参数，apply 是数组，而 call 则是 arg1,arg2...这种形式。  
-通过 bind 改变 this 作用域会返回一个新的对象，这个对象不会马上执行。
-详细看[这里](https://www.youtube.com/watch?v=c0mLRpw-9rI)
+通过 bind 改变 this 作用域会返回一个新的函数，这个函数里面有了绑定对象的属性。
+
+apply:
+
+```
+applyTest = {
+  num: 1
+}
+function test(a,b){
+  console.log(this.name+a+b);
+}
+test.apply(applyTest,[1,2]);
+
+```
+
+call:
+
+```
+callTest = {
+  num: 1
+}
+function test(a,b){
+  console.log(this.name+a+b);
+}
+test.call(callTest,1,2);
+```
+
+bind:
+
+```
+bindTest = {
+  num : 1
+}
+function test(a,b) {
+  console.log(this.num+a+b)
+}
+var newBind = test.bind(bindTest);
+newBind(1,2);
+
+```
 
 ---
 
@@ -342,9 +387,10 @@ return target;
 
 #### new 操作符原理（手动实现 new 给出思路）
 
-1. 创建一个空对象 obj，然后把这个空对象的（原型）**proto**设置为构造函数的 prototype。
-2. 构造函数被传入参数并调用，关键字 this 被设定指向该（实例）对象。
-3. 返回这个对象。
+1. 创建一个空对象 obj，作为要返回的对象实例。
+2. 然后把这个空对象的原型指向构造函数的 prototype 属性。
+3. 把这个空对象赋值给构造函数内部的 this 关键词。
+4. 一步步执行构造函数。
 
 ---
 
@@ -456,6 +502,16 @@ function Cat(name){
 ```
 
 解决了组合继承的小缺点
+
+---
+
+#### 原型链的理解
+
+当我们定义一个对象的时候，我们会发现这个对象可以使用很多我们没定义的方法。我们进一步查看这个对象会发现，其拥有一个**proto**属性，这个属性中有很多方法，比如 toString、hasOwnProperty 等。
+
+对象通过这个属性指向这个对象的原型，这个原型有 constructor 属性，指向这个原型的构造函数，构造函数的 prototype 属性又指回这个原型，一个个对象通过他们的原型连接起来，就构成了原型链。
+
+所有对象的顶层原型是 Object 对象，其原型是 null。所有函数的顶层原型是 Function 对象
 
 ---
 
@@ -590,6 +646,8 @@ react 则是使用 jsx 来构建项目，哲学可以说是什么都用 js 来�
 
 #### 前端工程化:
 
+#### MVC MVP MVVM 架构了解吗，他们的使用场景
+
 ---
 
 #### web worker：
@@ -637,7 +695,12 @@ https 就是安全版本的 http，因为 http 传输是明文传输的，很容
   是**目前主流方法**
 
 * http2.0:
-  在 1.1 的基础上使多个请求互不影响干扰（并行交错地发送多个响应，响应之间互不干扰。使用一个连接并行发送多个请求和响应。所有通信都在一个 TCP 连接上完成，此连接可以承载任意数量的双向数据流。所以，如果 http2.0 全面应用，很多 http1.1 中的优化方案就无需用到了（譬如打包成精灵图，静态资源多域名拆分等））、规定了 HTTP 传输的所有内容都转为二进制进行传输 、首部压缩（http 头部压缩，减少体积）、请求优先级（如果流被赋予了优先级，它就会基于这个优先级来处理，由服务器决定需要多少资源来处理该请求。）
+  - 二进制分帧（在应用层(HTTP)和传输层(TCP)之间加了一个二进制分帧层，将所有传输内容分割为消息和帧，以消息的形式发送，消息由多个帧组成）
+  - 首部压缩（要求字段转换为键值对的形式，用表来存储这些键值对，对于相同的数据，不再重复请求响应发送，请求响应的内容要不是新的键值对，要不是替换之前的键值对）
+  - 多路复用（基于二进制分帧层，并行交错地发送多个响应/请求，使多个请求/响应互不影响干扰。所有通信都在一个 TCP 连接上完成，此连接可以承载任意数量的双向数据流。所以，如果 http2.0 全面应用，很多 http1.1 中的优化方案就无需用到了（譬如打包成精灵图，静态资源多域名拆分等））
+  - 请求优先级（如果流被赋予了优先级，它就会基于这个优先级来处理，比如客户端设置 css>js>jpg，那么服务端按此顺序返回资源）
+  - 服务器推送（服务器可以对一个客户端的请求发送多个响应，不用客户端明确进行请求，比如请求 html 资源，服务端返回 html 资源的同时返回 js 和 css 资源）
+  - 流量控制（）
 
 ---
 
@@ -797,7 +860,7 @@ ETag 的作用是解决 Last-modify 无法解决的几个问题:
 
 1. 用户输入 URL，
 2. 浏览器开始对 URL 进行解析（URL 分成协议+域名+，比如*https://www.baidu.com*）
-3. 对把 URL 解析完毕后，得到了 DNS 地址，然后进行 DNS 查询。（查询有规则，先查询本地内存有没有保存此 DNS 相对的 ip 地址，没有的话查询电脑有没有保存，没有的话向最近的路由器查询，没有的话向上级路由器查询，一步步进行）
+3. 对把 URL 解析完毕后，得到了 DNS 地址，然后进行 DNS 查询。（查询有规则,下面有）
 4. DNS 查询完毕，得到了此域名所对应的 IP 地址。然后对此 IP 地址进行 TCP 请求，进行 TCP 三次握手，建立连接。（三次握手具体：① 客户端向服务器发出请求。② 服务端接收到请求，并向客户端回复请求。③ 客户端收到服务端的回复，再次回复服务端。经过三次握手，客户端和服务端都确认了自己和对方的收发请求能力，这也是三次握手的作用，确认无误后就能开启 http 交互了）
 5. 三次握手成功后，客户端查询本地缓存，如未发现过期，就使用本地缓存的页面进行渲染。如果发现缓存的资源过期或者未查询到缓存（可能是第一次访问），就向服务端发送 http 请求，请求头中附带 etag 和 if-modified（？），服务端收到请求，查看请求头中的信息，如果有的话对 etag 和 if-modified 进行比对，如果发现过期或者是第一次访问，就进行回复，状态号 200，请求主体是资源。如果发现未过期，就回复 304，说明资源未过期，请求头带新的 etag 和 if-modified，请求主体不带资源。
 6. 客户端收到回复，如果 304 的话就更新 etag 和 if-modified。不然就根据返回主体中的资源渲染页面。（渲染页面先根据 html 文件渲染 dom 树，遇到 css、js 和其他资源都会向服务端进行请求，然后分别构建 dom 树和 css 树，再把两个树进行合并生成 render 树，根据 render 树对页面进行渲染）
@@ -822,7 +885,34 @@ DNS 的工作原理及过程分下面几个步骤：
 
 #### session 和 cookie
 
+cookie 是服务器发送到浏览器并保存的一块数据，下次浏览器向服务器发出请求时会被携带。用于保持用户的登录状态。cookie 的出现使无状态的 http 协议可以记录状态信息，大小不能超过 4K。
+
+主要存储:
+
+- 会话状态（登陆状态、购物车信息、游戏分数等）。
+- 个性化设置。
+- 行为跟踪。
+
+session 是保存在服务端的。客户端请求创建一个 session 的时候，服务器检查请求中是否包含 sessionId，是的话就在本地检索并拿出来使用，无的话就创建一个 cookie 并生成一个相关联的 sessionId，并返回一个包含这个 sessionId 的 cookie 给客户端保存，客户端下次请求带上这个 sessionId 就行。
+
+主要存储：
+
+- 网上商城的购物车;
+- 保存用户登录信息，防止用户非法登录;
+- 将某些数据放入 session 中,供同一用户的不同页面使用;
+
 ##### sessionStorage 和 localStorage
+
+两者都是 HTML5 新增的两个特效，主要是用来作为会话存储以及本地存储来使用的，解决了以往的 cookie 存储空间不足的问题，两者大小可以达到 5M。
+
+sessionStorage 用于存储当前会话的数据，会话结束时会被清除。
+
+localStorage 用于存储当前站点的数据，除非用户调用 api 清除或清除浏览器缓存，否则会被长期保存。
+
+api：
+
+- setItem(xx,xx);
+- getItem(xx,xx);
 
 ##### 怎么设置 cookie 过期时间
 
@@ -849,7 +939,7 @@ csrf(cross site request forgery)也叫跨站请求伪造，就是让用户在不
 
 ## 性能优化：
 
-### 重绘与回流优化：
+#### 重绘与回流优化：
 
 **CSS：**
 
@@ -894,13 +984,22 @@ csrf(cross site request forgery)也叫跨站请求伪造，就是让用户在不
 
 ---
 
-### CSS 对网页性能优化
+#### CSS 对网页性能优化
+
+- 将 CSS 代码放在 HTML 页面的顶部
+- 避免使用 CSS 表达式
+- 使用 < link> 来代替 @import
+- 避免使用 Filters
 
 ---
 
-### 有没有考虑对图片处理的优化手段，说说常用的
+#### 有没有考虑对图片处理的优化手段，说说常用的
 
-答:懒加载和预加载、对大的图片进行压缩。
+- 优化图片大小，对图片进行压缩。
+- 通过 CSS Sprites 优化图片
+- 不要在 HTML 中使用缩放图片
+- favicon.ico 要小而且可缓存
+- 懒加载和预加载
 
 #### 图片懒加载怎么做
 
@@ -909,15 +1008,43 @@ csrf(cross site request forgery)也叫跨站请求伪造，就是让用户在不
 
 ---
 
-### 考虑过缓存方面的优化吗，强缓存和协商缓存区别
+#### 考虑过缓存方面的优化吗，强缓存和协商缓存区别
+
+- 使用 Ajax 缓存
+- 设置 ETag：ETags（Entity tags，实体标签）是 web 服务器和浏览器用于判断浏览器缓存中的内容和服务器中的原始内容是否匹配的一种机制。
+-
 
 ---
 
-### React 性能优化
+#### React 性能优化
 
 答：[这里](https://juejin.im/post/5d045350f265da1b695d5bf2)
 
 ---
+
+#### 内容优化
+
+- 减少 HTTP 请求数。这条策略是最重要最有效的，因为一个完整的请求要经过 DNS 寻址，与服务器建立连接，发送数据，等待服务器响应，接收数据这样一个消耗时间成本和资源成本的复杂的过程。
+  常见方法：合并多个 CSS 文件和 js 文件，利用 CSS Sprites 整合图像，Inline Images (使用 data：URL scheme 在实际的页面嵌入图像数据 )，合理设置 HTTP 缓存等。
+- 减少 DNS 查找
+- 避免重定向
+- 懒加载组件，预加载组件
+- 减少 DOM 元素数量。页面中存在大量 DOM 元素，会导致 javascript 遍历 DOM 的效率变慢。
+- 最小化 iframe 的数量。iframes 提供了一个简单的方式把一个网站的内容嵌入到另一个网站中。但其创建速度比其他包括 JavaScript 和 CSS 的 DOM 元素的创建慢了 1-2 个数量级。
+- 减小 Cookie 大小
+
+- 使用内容分发网络（CDN）。把网站内容分散到多个、处于不同地域位置的服务器上可以加快下载速度。
+- GZIP 压缩
+- 提前刷新缓冲区
+- 对 Ajax 请求使用 GET 方法
+
+- 减小 Cookie 大小
+
+- 将 JavaScript 脚本放在页面的底部。
+- 将 JavaScript 和 CSS 作为外部文件来引用。在实际应用中使用外部文件可以提高页面速度，因为 JavaScript 和 CSS 文件都能在浏览器中产生缓存。
+- 最小化 JavaScript 和 CSS 文件（webpack 等工具），优质的编码方式（比如使用事件监听）
+- 尽量减少 DOM 的访问。访问 DOM 元素比较慢。
+- javascript 代码注意：谨慎使用 with，避免使用 eval Function 函数，减少作用域链查找。
 
 ---
 
@@ -935,11 +1062,31 @@ csrf(cross site request forgery)也叫跨站请求伪造，就是让用户在不
 
 ## 算法
 
-#### 一亿个订单找出金额最大的一万个数用什么方法时间复杂度和空间复杂度最低：
+#### 有哪些排序方法:
+
+冒泡排序、归并排序、插入排序、快速排序、堆排序
+
+##### 快速排序原理
+
+```
+
+```
 
 ---
 
-#### 有哪些排序方法:
+#### 查找算法
+
+##### 一亿个订单找出金额最大的一万个数用什么方法时间复杂度和空间复杂度最低：
+
+排序？考察查找算法
+
+---
+
+#### 链表
+
+##### 判断链表是否有环
+
+使用双指针，一个一次走一格，另一个走两格，如果有环，经过 n(环长度)次后，双指针会指向同一节点。
 
 ---
 
@@ -952,6 +1099,10 @@ csrf(cross site request forgery)也叫跨站请求伪造，就是让用户在不
 ---
 
 ## 其他问题：
+
+#### 前端新技术
+
+**WebAssembly**
 
 #### 自我介绍：
 
@@ -985,8 +1136,6 @@ csrf(cross site request forgery)也叫跨站请求伪造，就是让用户在不
 
 ## 旧：
 
-()MVC MVP MVVM 架构了解吗，他们的使用场景
-
 ()怎么理解前后端分离思想
 
 ()怎么同时让多个异步请求并行？
@@ -997,13 +1146,7 @@ csrf(cross site request forgery)也叫跨站请求伪造，就是让用户在不
 
 实现括号匹配用数据结构怎么做？说说思路 （栈）
 
-快速排序原理
-
-react 路由原理
-
 react hooks
-
-redux 异步中间件实现原理
 
 Vue MVVM 原理
 
