@@ -57,9 +57,21 @@ HTML5 新增的语义化标签：header、footer、nav、article、section、asi
 原理:  
 一些 dom 事件（比如 click，mousedown，mouseup，keydown，keyup，keypress。）具有冒泡属性：就是事件会一层层向上传播，那么有了这个机制，我们如果给外层的节点加 onclick 事件，如果内层的节点触发了这个事件，那么就会触发我们定义的事件。
 
+#### 事件捕获和事件冒泡
+
+捕获：以外部->里部的顺序执行事件
+
+冒泡：以里部->外部的顺序执行事件
+
+w3c 标准是事件触发后，会先从外部到内部进行一遍捕获过程，再从内部到外部进行一遍冒泡内容。
+
+adEventListener()的第三个参数 true 为捕获阶段执行此事件，false 为冒泡阶段执行此事件。
+
 ##### 阻止冒泡
 
-addEventListener 时第三个参数来确定要不要冒泡。
+非 IE：window.event.cancelBubble = true;
+
+IE: e.stopPropagation()
 
 ---
 
@@ -262,9 +274,13 @@ let 可以看成是 var 的更严格。
 const 声明的变量值不能改变，一般用来声明常量。
 const 声明必须直接赋值。
 
+编程中应该使用 const 来默认声明变量，只有碰到确定会更改值的话再用 let。
+
 ---
 
 #### const 声明的对象的属性值可以修改吗？：
+
+可以的，只要不更改对象的引用就行。
 
 ---
 
@@ -528,7 +544,16 @@ function Cat(name){
 
 #### JS 没有闭包的话会怎么样:
 
-一句话可以概括：闭包就是能够读取其他函数内部变量的函数，或者子函数在外调用，子函数所在的父函数的作用域不会被释放。（待概括）  
+理论：
+
+- 闭包用一句话来定义就是返回函数内部变量的函数。
+- 具体讲就是 JS 中有函数作用域这个概念，函数作用域就是一个位于函数内部的私有域，函数可以访问外部环境的变量，但是外部环境无法访问函数内部定义的变量。
+- JS 的内存回收机制使得如果函数内部没有闭包的话，函数在执行完后就在内存中被回收了，就再也无法访问其内部变量了。
+- 闭包利用了作用域可以继承这个概念，使得闭包能够访问函数作用域，从而我们就能够通过闭包来访问函数作用域。
+
+实践：
+闭包随处可见，一个 Ajax 请求的成功回调，一个事件绑定的回调方法，一个 setTimeout 的延时回调，或者一个函数内部返回另一个匿名函数，这些都是闭包。简而言之，无论使用何种方式对函数类型的值进行传递，当函数在别处被调用时都有闭包的身影。
+
 没有闭包的话
 
 ---
@@ -592,15 +617,56 @@ getSnapshotBeforeUpdate()
 static getDerivedStateFromError()  
 componentDidCatch()
 
+PS: 函数组件严格来说没有生命周期函数，但社区有相关实现?
+
+#### Vue 生命周期
+
+- beforeCreate
+- created
+- beforeMount
+- mounted
+- beforeUpdate
+- updated
+- beforeDestroy
+- destroyed
+
+#### Vue 的双向绑定原理
+
+通过发布者订阅者方式对数据进行劫持和监听，数据劫持的实现是使用 Object.defineProperty 方法，在方法里面定义 get 和 set 方法，set 方式是数据发生变化就会触发，所以我们通过在 set 方法里面进行对视图的更新就可以实现数据和识图的双向绑定了。
+
+双向绑定主要分为两部分，数据劫持和发布者-订阅者。
+
+- 数据劫持
+  设置一个监听器 Observer 用来劫持并监听属性。
+- 发布者-订阅者
+  如果属性发生变化，Observer 就告诉订阅者 Watcher 看是否需要更新，因为有很多个订阅者，所以我们要一个消息订阅器 Dep 来专门收集这些订阅者并且在前两者之间进行统一管理。
+  初始化时我们还需要一个 Compile 来扫描解析每个节点，来初始化模板数据和绑定节点相应的订阅器。
+
+##### Vuex 数据更新流程
+
+组件内通过 dispatch 来调用 actions，actions 中通过 commit 来触发 mutations，在 mutations 中使用逻辑来更改 state 中的数据，因为 vue 双向绑定的特效，state 中的数据变化了，相应视图也会更新。
+
 #### jquery 与 vue/react 的区别：
 
 jquery 是用来简化 dom 操作的库，vue/react 则是来构建整个网站应用的框架。
 
 #### vue 和 react 的区别:
 
-vue 和 react 都使用了虚拟 DOM。
-vue 构建方式是 template/show/script，更像传统的 html/css/js。
-react 则是使用 jsx 来构建项目，哲学可以说是什么都用 js 来写，然后让 babel 等工具来转换成 html 给浏览器来渲染。
+我有看过 vue 作者尤雨溪在知乎上对 vue 和 react 的优点分别是什么的回答，他在其中说 react 一开始的定位就是提出开发 ui 的新思路，他们抛弃了传统的 html/css/js 搭配，希望能够只用写 js 就能够开发 web 应用，希望开发者能够把精力放到应用逻辑上面去，而不是 dom 操作。可以说 react 改变了前端开发的惯用写法。
+
+vue 一开始的定位则是降低前端开发的门槛，采用了传统的 html/css/js 三件套的写法。也同样具有很多 react 的精华之处比如虚拟 dom、不用操作 dom 等。
+
+我个人觉得上手难度来说 vue 是比 react 容易的，vue 提供了更加简单好用的开发形式，而 react 的自由度更加的高，开发者能有更多的选择，但是也是一种烦恼，比如 css 的写法就有很多方式、组件本来标准是 class 现在可用 function 写法等。
+
+如果让我选择，我会选择 vue，因为我觉得能写出简单易看懂的代码才是厉害的开发者。
+
+#### router 的原理
+
+SPA 应用最大的特点就是无刷新，页面交互是无刷新的，这是使用了 ajax 技术进行与异步请求。页面跳转也是不刷新的，这就用到了路由。路由的实现很简单，就是对 url 进行解析，发现变化后触发一个事件（这个事件在 html5 前是 hashchange 事件，但是 url 会出现一个#号，html5 提出了新的 api：pushState/replaceState/popState,），这个事件不会向服务器发送请求，从而也就不会使页面进行刷新，我们通过监听这个事件来实现页面的更新。
+
+##### vuex 中数据变化发生的流程
+
+vue 组件中触发 dispatch 方法，dispatch 触发相应的 action，action 触发相应的 mutation，然后 mutation 对 state 中的数据进行更新。
 
 #### 虚拟 dom：
 
@@ -629,18 +695,6 @@ react 则是使用 jsx 来构建项目，哲学可以说是什么都用 js 来�
 ---
 
 ## 前端工具：
-
-#### 介绍一下 webpack 及使用过的 plugin：
-
----
-
-#### wepack 中 plugin 与 loader 的区别：
-
----
-
-#### 项目的 webpack 配置
-
----
 
 #### babel 的编译原理，抽象语法树
 
@@ -1092,7 +1146,7 @@ csrf(cross site request forgery)也叫跨站请求伪造，就是让用户在不
 
 ## 项目：
 
-#### 说说项目中遇到的坑，怎么解决的
+#### 说说项目中遇到的最大的困难
 
 #### 项目中有考虑到哪些优化的地方？
 
