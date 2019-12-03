@@ -22,7 +22,14 @@ tags:
 #### 语义化（标签）
 
 为了 html 代码有更好的可读性，可以做到从代码上来展示页面的结构。良好的语义化代码可以直接从代码上就能看出来那一块到底是要表达什么内容。
-HTML5 新增的语义化标签：header、footer、nav、article、section、aside。
+HTML5 新增的语义化标签：header、nav、footer、article、section、aside、main
+
+##### HTML5 新标签
+
+- header、nav、footer
+- article、section、aside、main
+- video、audio
+- canvas、svg
 
 #### 重绘重排的原理
 
@@ -49,6 +56,14 @@ HTML5 新增的语义化标签：header、footer、nav、article、section、asi
 4. 根据渲染树来布局，以计算每个节点的几何信息，将各个节点绘制到屏幕上。
 
 ---
+
+##### 常见的浏览器-内核-引擎
+
+- chrome - webkit / blink - v8
+- firefox - gecko - spidermonkey
+- safari - webkit - javascriptCore
+- edge - edgeHTML - chakra
+- ie - trident - chakra
 
 #### 事件代理
 
@@ -700,7 +715,13 @@ vue 组件中触发 dispatch 方法，dispatch 触发相应的 action，action �
 
 #### 前端工程化:
 
-#### MVC MVP MVVM 架构了解吗，他们的使用场景
+#### MVVM 架构
+
+是 model-view-viewmodel 的缩写。是一种设计思想，model 代表数据模型和业务逻辑；view 代表视图；viewmodel 是一个同步两者的中间人。
+
+View 和 Model 之间并没有直接的联系，而是通过 ViewModel 进行交互，Model 和 ViewModel 之间的交互是双向的， 因此 View 数据的变化会同步到 Model 中，而 Model 数据的变化也会立即反应到 View 上。
+
+ViewModel 通过双向数据绑定把 View 层和 Model 层连接了起来，而 View 和 Model 之间的同步工作完全是自动的，无需人为干涉，因此开发者只需关注业务逻辑，不需要手动操作 DOM, 不需要关注数据状态的同步问题，复杂的数据状态维护完全由 MVVM 来统一管理。
 
 ---
 
@@ -854,13 +875,20 @@ xhr.send(data);
 
 #### 状态码
 
-答：  
-1xx：信息，请求收到，继续处理  
-2xx：成功，行为被成功地接受、理解和采纳  
-3xx：重定向，为了完成请求，必须进一步执行的动作  
-4xx：客户端错误，请求包含语法错误或者请求无法实现  
-5xx：服务器错误，服务器不能实现一种明显无效的请求  
-详细看[这里](https://juejin.im/post/5a276865f265da432c23b8d2)
+答：
+
+- 1xx：信息，请求收到，继续处理
+- 2xx：成功，行为被成功地接受、理解和采纳
+- 3xx：重定向，为了完成请求，必须进一步执行的动作  
+  301；永久重定向
+  302：临时重定向
+- 4xx：客户端错误，请求包含语法错误或者请求无法实现
+  400：请求存在语法错误
+  401：请求未认证
+  403：缓存可用
+- 5xx：服务器错误，服务器不能实现一种明显无效的请求  
+  500：服务器发生错误
+  502：网关发生错误
 
 ##### 状态码 304（强缓存和协商缓存）
 
@@ -978,16 +1006,18 @@ api：
 
 答：  
 xss(cross site script)也叫跨站脚本攻击，是通过漏洞往网站写入脚本来实现攻击。攻击方式有反射型(url 或其他输入点注入)和存储型(存储到数据库后读取时注入)。理论上所有用户输入点都有可能存在 xss 漏洞。  
-可以通过过滤用户输入、对 cookie 进行安全操作(设置成 httponly，这样 js 就不能获取到该网站的 cookie 了)等操作进行防范。
+防御：
+
+- 过滤用户输入
+- 对 cookie 进行安全操作(设置成 httponly，这样 js 就不能获取到该网站的 cookie 了)
 
 csrf(cross site request forgery)也叫跨站请求伪造，就是让用户在不知情的情况，冒用其身份发起了一个请求。比如诱导用户点击一个攻击网址，攻击网址向被攻击网址发送请求，如果浏览器中存在此网站 cookie，那么被攻击网址就会识别是用户操作，从而被攻击。  
-可以通过验证 HTTP Referer 字段(它记录了该 HTTP 请求的来源地址)、设置验证码、在请求地址中添加 token、在 http 头中添加 token 等方法进行防范。
+防御：
 
----
-
-#### 抓包会吗，抓包原理
-
-答：抓包上网络安全实验课的时候讲到过，老师让我们用 wireshark 来抓包分析 http 和 tcp 相关知识。
+- 验证 HTTP Referer 字段(它记录了该 HTTP 请求的来源地址)
+- 设置验证码
+- 在 http 头中添加 token
+- 对 cookie 进行安全操作(设置成 httponly，这样 js 就不能获取到该网站的 cookie 了)
 
 ---
 
@@ -1057,8 +1087,22 @@ csrf(cross site request forgery)也叫跨站请求伪造，就是让用户在不
 
 #### 图片懒加载怎么做
 
-答：一般是绑定 scroll 事件，使用 offiset
-懒加载的主要目的是作为服务器前端的优化，减少请求数或延迟请求数。（必要?）
+1.  img 不设置 src 属性，先设置 data-src
+
+2.  1.  通过 document.documentElement.clientHeight 获取屏幕可视窗口高度
+        通过 element.offsetTop 获取元素相对于文档顶部的距离
+        通过 document.documentElement.scrollTop 获取浏览器窗口顶部与文档顶部之间的距离，也就是滚动条滚动的距离
+        然后判断 ②-③<① 是否成立，如果成立，元素就在可视区域内。
+    2.  function isInSight(el) {
+        const bound = el.getBoundingClientRect(); 图片到可视区域顶部距离
+        const clientHeight = window.innerHeight; 可视区域的高度
+        //如果只考虑向下滚动加载
+        //const clientWidth = window.innerWeight;
+        return bound.top <= clientHeight + 100;
+        }
+    3.  用到 intersectionRatio 来判断是否在可视区域内，当 intersectionRatio > 0 && intersectionRatio <= 1 即在可视区域内。
+
+3.  绑定 scroll 事件，触发时对图片进行检查，是否在可视区域内。
 
 ---
 
@@ -1091,8 +1135,6 @@ csrf(cross site request forgery)也叫跨站请求伪造，就是让用户在不
 - GZIP 压缩
 - 提前刷新缓冲区
 - 对 Ajax 请求使用 GET 方法
-
-- 减小 Cookie 大小
 
 - 将 JavaScript 脚本放在页面的底部。
 - 将 JavaScript 和 CSS 作为外部文件来引用。在实际应用中使用外部文件可以提高页面速度，因为 JavaScript 和 CSS 文件都能在浏览器中产生缓存。
