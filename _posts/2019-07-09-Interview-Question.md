@@ -390,7 +390,7 @@ ES6 新出的基本数据类型 表示独一无二的值。
 
 #### 深/浅拷贝
 
-浅拷贝：一般用 Object.assign(obj)  
+浅拷贝： Object.assign(obj) ：实现一维数组的拷贝 、 JSON.parse(JSON.stringify(obj)) ：实现多维数组的拷贝，但是undefined和symbol、函数在序列化过程中会被忽略（出现在非数组对象的属性值中时）或者被转换成 null（出现在数组中时）。
 深拷贝：  
 基础：JSON.parse(JSON.stringify())  
 进阶：function deepClone(target) {
