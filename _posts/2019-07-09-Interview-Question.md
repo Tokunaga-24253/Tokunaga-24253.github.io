@@ -226,13 +226,13 @@ js 需要处理并发任务，所以需要事件循环。
 
 基本类型：Number/String/Boolean/Undefined/Null/Symbol(ES6)
 
-引用类型：Object(Array/Date/RegExp)
+引用类型：Object(Array/Date/RegExp/Math)
 
 ---
 
 #### 判断类型方法
 
-typeof instanceof Object.prototype.toString
+typeof instanceof Object.prototype.toString Array.isArray
 
 ```
 typeof(test)
@@ -492,6 +492,8 @@ function Father(name) {
 function Child() {
 }
 Child.prototype = new Father();
+// 修复constructor
+Child.prototype.constructor = Child();
 ```
 
 缺点：要想为子类新增属性和方法，要在继承语句之后执行，不能放到构造器中、无法实现多继承、创建实例时无法向父类构造函数传参。
@@ -500,7 +502,7 @@ Child.prototype = new Father();
 
 ```
 function Child() {
-  Father.call(this);
+  Father.call(this, arguments);
 }
 ```
 
@@ -510,9 +512,10 @@ function Child() {
 
 ```
 function Child() {
-  Father.call(this);
+  Father.call(this, arguments);
 }
 Child.prototype = new Father();
+Child.prototype.constructor = Child();
 ```
 
 缺点：解决了上两个的缺点，但是调用了两次父类构造函数，生成了两份实例，多消耗了一点内存
@@ -538,11 +541,11 @@ function Cat(name){
 
 #### 原型链的理解
 
-当我们定义一个对象的时候，我们会发现这个对象可以使用很多我们没定义的方法。我们进一步查看这个对象会发现，其拥有一个**proto**属性，这个属性中有很多方法，比如 toString、hasOwnProperty 等。
+所有的引用类型（数组、对象、函数），都有一个**proto**属性，属性值是一个普通的对象
 
-对象通过这个属性指向这个对象的原型，这个原型有 constructor 属性，指向这个原型的构造函数，构造函数的 prototype 属性又指回这个原型，一个个对象通过他们的原型连接起来，就构成了原型链。
+所有的函数，都有一个 prototype 属性，属性值也是一个普通的对象
 
-所有对象的顶层原型是 Object 对象，其原型是 null。所有函数的顶层原型是 Function 对象
+所有的引用类型（数组、对象、函数），**proto**属性值指向它的构造函数的 prototype 属性值
 
 ---
 

@@ -163,6 +163,8 @@ bind 与前两者稍微有些不同，它结果是返回一个新的函数，其
 1. Object.assign(obj) ：实现一维数组的拷贝
 2. JSON.parse(JSON.stringify(obj)) ：实现多维数组的拷贝，但是 undefined 和 symbol、函数在序列化过程中会被忽略（出现在非数组对象的属性值中时）或者被转换成 null（出现在数组中时）。
 
+### 走台阶
+
 ---
 
 ## 后记
